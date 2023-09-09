@@ -1,7 +1,5 @@
 <?php
-require "./connSQL.php";
-require "./CDN.php";
-require "../allCDN.php";
+require "../connSQL.php";
 
 
 /* 抓到的變數檢查區 */
@@ -10,7 +8,7 @@ $id = isset($_GET['id']) ? $_GET['id'] : null;
 
 /*  讀取-這裡抓到想要的訂單明細資訊    */
 $orderdetail = "SELECT *,(o.book_count * o.book_price) AS amount 
-FROM `bookorder_detail` o
+FROM `order_detail` o
 JOIN book pro ON o.book_id = pro.book_id
 WHERE o.order_id =?";
 
@@ -53,28 +51,12 @@ try {
 
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <style>
-        .imgdiv {
-            width: 100px;
-            height:100px;
-        }
-
-        .row{
-            font-family: 'CustomFont';
-        }
-
-    </style>
-    <title>訂單明細</title>
-</head>
-
+<?php require '../header.php'; ?>
 <body>
+    <!-- 登入以及顯示 -->
+    <?php require '../login/login.php'; ?>
+    <!-- 導覽列 -->
+    <?php require '../navbar.php'; ?>
 
 <div class="row">
 <!-- 左側訂單明細 -->
@@ -101,15 +83,15 @@ try {
                                 </td>
                                 <td>
                                     <div class="imgdiv">
-                                        <img src="./product/img/<?= $value['book_img'] ?>" alt="Product Image"
+                                        <img src="./book/img/<?= $value['book_img'] ?>" alt="book Image"
                                             class="w-100">
                                     </div>
                                 </td>
                                 <td class="text-center">
-                                    <?= $value['product_price'] ?>
+                                    <?= $value['book_price'] ?>
                                 </td>
                                 <td class="text-center">
-                                    <?= $value['product_count'] ?>
+                                    <?= $value['book_count'] ?>
                                 </td>
                                 <td class="text-end">
                                     <?= $value['amount'] ?>
@@ -158,17 +140,17 @@ try {
                 </div>
                 <div>訂單時間：
                     <span>
-                        <?= $roworder[0]['order_date'] ?>
+                        <?= $roworder[0]['order_create_date'] ?>
                     </span>
                 </div>
                 <div>出貨狀態：
                     <span>
-                        <?= $roworder[0]['order_d_status'] ?>
+                        <?= $roworder[0]['order_status_name'] ?>
                     </span>
                 </div>
                 <div>出貨狀態：
                     <span>
-                        <?= $roworder[0]['receipt_status'] ?>
+                        <?= $roworder[0]['receipt_name'] ?>
                     </span>
                 </div>
                 <div>
@@ -191,7 +173,7 @@ try {
                 </div>
                 <div>付款方式：
                     <span>
-                        <?= $roworder[0]['pay_status'] ?>
+                        <?= $roworder[0]['pay_name'] ?>
                     </span>
                 </div>
                 <div>
@@ -199,7 +181,7 @@ try {
                 </div>
                 <div>送貨方式：
                     <span>
-                        <?= $roworder[0]['delivery_status'] ?>
+                        <?= $roworder[0]['delivery_name'] ?>
                     </span>
                 </div>
                 <div>收貨人姓名：
