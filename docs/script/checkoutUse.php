@@ -26,7 +26,7 @@
                 $('#gocheckout').on('click', function () {
                     // 將購物車資料送到伺服器端進行處理
                     $.ajax({
-                        url: 'InsertOrder.php',
+                        url: '../CRUD/OrderInsert.php',
                         method: 'POST',
                         data: {
                             cartData: JSON.stringify(getCartData()) // 將購物車資料轉為 JSON 字串

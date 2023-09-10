@@ -1,36 +1,30 @@
 <script>
             $(function () {
-
                 amount();
-
                 // 產品數量的++
-                $('.table').on('click', 'button:nth-child(1)', function () {
+                $('#orderDetail').on('click', 'button:nth-child(1)', function () {
                     let productcount = $(this).parents('.changecount').find('input').val();
                     productcount++;
                     $(this).parents('.changecount').find('input').val(productcount);
                     amount();
-                    updateCartItem($(this).parents('tr'));
+                    updateCartItem($(this).parents('.newcount'));
                 });
-
                 // 產品數量的--
-                $('.table').on('click', 'button:nth-child(2)', function () {
+                $('#orderDetail').on('click', 'button:nth-child(2)', function () {
                     let productcount = $(this).parents('.changecount').find('input').val();
                     if (productcount > 1) {
                         productcount--;
                         $(this).parents('.changecount').find('input').val(productcount);
                         amount();
-                        updateCartItem($(this).parents('tr'));
-
+                        updateCartItem($(this).parents('.newcount'));
                     }
                 });
-
-
                 //傳到Cart更新資料庫
                 function updateCartItem(row) {
                     var productId = row.children('td:nth-child(1)').find('input:nth-child(2)').val();
                     var count = parseInt(row.children('td:nth-child(4)').find('input').val());
                     $.ajax({
-                        url: 'UpdateCart.php',
+                        url: '/phpProject/docs/CRUD/CartUpdate.php',
                         method: 'POST',
                         data: {
                             pid: productId,
@@ -48,29 +42,28 @@
                     } else {
                         input.prop('checked', false);
                     }
-                })
+                });
 
 
-                //計算小計
+                //計算小計&總金額
                 function amount() {
                     let total = 0
-                    $('.table>tbody>tr').each(function () {
-                        let input = $(this).find('td div input');
-
-                        let allcount = parseInt(input.val());
-                        let allprice = parseInt($(this).find('td:nth-child(3)').text());
-                        let subtotal = allcount * allprice;
-                        $(this).find('.new').text(subtotal);
-                    });
-                    $('.table>tbody>tr').each(function () {
-                        let sum = parseInt($(this).find('.new').text());
-                        if (!isNaN(sum)) {
-                            total = total + sum;
+                    $('#orderDetail .row').each(function () {
+                        // 先抓到產品價格和數量(並轉成INT)
+                        let price = parseInt($(this).find('.pricebox .pprice').val());
+                        let count = parseInt($(this).find('.countbox input').val());
+                        let thisAmount = price*count;
+                        // 把計算值打印在小計欄位
+                        $(this).find('.amountbox').text(thisAmount);
+                        // 計算總金額
+                        if (!isNaN(thisAmount)) {
+                            total +=thisAmount;
                         }
-                    }).find('.total').text(total);
+                    })
+                    $('.totalbox').text(total);
                 };
 
-                //是否勾選結帳項目
+                // 阻擋未選擇商品
                 $('#gocheckout').on('click', function () {
                     let isChecked = false;
                     $('input[type="checkbox"]').each(function () {
@@ -79,7 +72,6 @@
                             return false; // 提前結束 each 迴圈
                         }
                     });
-
                     if (!isChecked) {
                         Swal.fire({
                             title: '你未選擇結帳項目!!',
@@ -94,7 +86,8 @@
                             showCancelButton: true,
                             confirmButtonColor: '#3085d6',
                             cancelButtonColor: '#d33',
-                            confirmButtonText: '確定'
+                            confirmButtonText: '前往',
+                            cancelButtonText: '取消'
                         }).then(function (result) {
                             if (result.isConfirmed) {
                                 document.querySelector('form').submit();
@@ -107,31 +100,28 @@
 
                 // 刪除提示
                 $('.delete').on('click', function () {
-                    let delid = $(this).parents('tr').children('td:nth-child(1)').find('input:nth-child(2)').val();
+                    let delid =$(this).parents('.row').children().find('.pid').val();
                     Swal.fire({
-                        title: '你要刪除嗎',
+                        title: '確定不需要了嗎',
                         showCancelButton: true,
                         confirmButtonColor: '#3085d6',
                         cancelButtonColor: '#d33',
-                        confirmButtonText: '刪除'
+                        confirmButtonText: '確定',
+                        cancelButtonText: '取消'
                     })
                         .then(function (result) {
                             if (result.value) {
                                 Swal.fire("已刪除項目!!").then(function () {
                                     $.ajax({
-                                        url: 'deletealert.php',
+                                        url: '/phpProject/docs/CRUD/CartDelete.php',
                                         method: 'GET',
                                         data: { 'remove': delid }
-                                    }).done(function () {
+                                    }).done(()=>{
                                         setTimeout(function () { location.reload(); }, 500);
                                     });
                                 })
                             }
                         })
                 });
-            })
+            });
         </script>
-
-        </body>
-
-</html>

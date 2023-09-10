@@ -12,8 +12,10 @@
                         <div class="d-flex hiddenme" >
                             <a href="/phpProject/docs/page/order.php" class="m-2"><span><i
                                         class="fa-solid fa-clipboard-list me-2"></i>訂單管理</span></a>
-                            <a href="/phpProject/docs/product/product.php" class="m-2"><span><i
+                            <a href="/phpProject/docs/page/product.php" class="m-2"><span><i
                                         class="fa-solid fa-book-tanakh me-2"></i>產品管理</span></a>
+                                        <a href="/phpProject/docs/page/cart.php" class="m-2"><span><i
+                                        class="fa-solid fa-book-tanakh me-2"></i>購物車</span></a>
                         </div>
                     </div>
                 </div>

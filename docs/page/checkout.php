@@ -103,7 +103,7 @@ if (isset($_GET["remove"])) {
 <body>
 <?php require '../login/login.php'; ?>
         <h2>結帳畫面</h2>
-        <form action="../order/InsertOrder.php" method="POST">
+        <form action="../CRUD/OrderInsert.php" method="POST">
             <div class="row">
                 <div class="col-6">
                     <table class="table">
@@ -280,4 +280,4 @@ if (isset($_GET["remove"])) {
             </div>
         </form>
 
-        <?php require '../order/checkoutUse.php'; ?>
+        <?php require '../script/checkoutUse.php'; ?>
