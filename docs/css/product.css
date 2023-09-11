@@ -1,0 +1,233 @@
+body {
+    background-image: url('/phpProject/img/bookcamp.png');
+}
+
+button,
+input,
+p,
+span {
+    background-color: transparent;
+    border: none;
+    margin: 0;
+    padding: 0;
+}
+
+
+
+/* 字型 */
+@font-face {
+    font-family: 'VT323-Regular';
+    src: url(/phpProject/font/VT323-Regular.ttf);
+}
+
+@font-face {
+    font-family: 'Cubic_11_1.010_R';
+    src: url(/phpProject/font/Cubic_11_1.010_R.ttf);
+}
+
+@font-face {
+    font-family: 'zpix';
+    src: url(/phpProject/font/zpix.ttf);
+}
+
+.font1 {
+    font-family: 'VT323-Regular';
+}
+
+.font2 {
+    font-family: 'Cubic_11_1.010_R';
+}
+
+.font3 {
+    font-family: 'zpix';
+}
+
+.fs {
+    font-size: 0.8rem;
+}
+
+.fm {
+    font-size: 1.0rem;
+}
+
+.fl {
+    font-size: 1.5rem;
+}
+
+.fxl {
+    font-size: 40px;
+}
+
+
+/* 限制字數 */
+.titleLimit {
+    -webkit-line-clamp: 1;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+}
+
+.textLimit {
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+}
+
+/* 小卡背景 */
+.colProduct {
+    height: 95%;
+    padding-inline: 8%;
+    padding-block: 3%;
+    margin-bottom: 10%;
+    background-color: rgb(255, 255, 255);
+    box-shadow:
+        -4px 0 0 white,
+        0 -4px 0 white,
+        4px 0 0 rgb(200, 200, 200),
+        0 4px 0 rgb(200, 200, 200);
+}
+
+
+/* 按鈕 */
+.okBtn-b {
+    padding-inline: 4%;
+    padding-block: 1%;
+    height: 35px;
+    color: #fff;
+    background-color: #209cee;
+    box-shadow:
+        inset -2px -2px #006bb3,
+        -2px 0 black,
+        0 -2px black,
+        2px 0 black,
+        0 2px black;
+}
+
+.okBtn-g {
+    padding-inline: 4%;
+    padding-block: 1%;
+    height: 35px;
+    color: #fff;
+    background-color: #92cc41;
+    box-shadow:
+        inset -2px -2px #4aa52e,
+        -2px 0 black,
+        0 -2px black,
+        2px 0 black,
+        0 2px black;
+}
+
+.okBtn-y {
+    padding-inline: 4%;
+    padding-block: 1%;
+    height: 35px;
+    color: black;
+    background-color: #f7d51d;
+    box-shadow:
+        inset -2px -2px #e59400,
+        -2px 0 black,
+        0 -2px black,
+        2px 0 black,
+        0 2px black;
+}
+
+.okBtn-r {
+    padding-inline: 4%;
+    padding-block: 1%;
+    height: 35px;
+    color: black;
+    background-color: #e76e55;
+    box-shadow:
+        inset -2px -2px #8c2022,
+        -2px 0 black,
+        0 -2px black,
+        2px 0 black,
+        0 2px black;
+}
+
+/*加入購物車彈跳視窗*/
+/* 加購內容區 */
+.modalheader {
+    background: #512893;
+    color: white;
+    display: flex;
+    justify-content: center;
+    border: 0;
+    border-radius: 5px 5px 0 0;
+    box-shadow:
+        0 -3px 0 #512893,
+        3px 0 0 #512893,
+        -3px 0 0 #512893,
+        3px -3px 0 black,
+        -3px -3px 0 black,
+        0 -6px 0 black,
+        -6px 0 0 black,
+        6px 0 0 black;
+}
+
+.modalbody {
+    border-radius: 0 0 1px 1px;
+    color: white;
+    background: #9b6cff;
+    box-shadow:
+    inset -2px 0 #512893,
+    inset 2px 0 #512893,
+    inset 0 -2px #512893,
+        0 3px 0 #512893,
+        3px 0 0 #512893,
+        -3px 0 0 #512893,
+        -3px 3px 0 black,
+        3px 3px 0 black,
+        0 6px 0 black,
+        -6px 0 0 black,
+        6px 0 0 black;
+}
+
+
+
+/* input text樣式 */
+  .productH{
+    width: 100%;
+    padding: 10px;
+    color: white;
+    background-color: #0D0733;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    }
+
+    .productC{
+    color: black;
+    padding-block: 20px;
+    text-align: center;
+    }
+    
+    .addinput{
+        width: 50%;
+        height: 35px;
+        border-radius: 12px;
+        text-align: center;
+        color: white;
+        background-color:#6b4cb3;
+    }
+ 
+/* 選購增加減少按鈕 */
+.iconWidth{
+width: 30px;       
+}
+
+/* 分頁 */
+.PageNext {
+    --bs-pagination-bg: transparent;
+    --bs-pagination-color: white;
+    --bs-pagination-border-width: 0;
+    --bs-pagination-border-radius: 0;
+    box-shadow:
+      2px 0 0 rgb(200, 200, 200),
+      -2px 0 0 white,
+      0 -2px 0 white,
+      0 2px 0 rgb(200, 200, 200);
+  }
+  
