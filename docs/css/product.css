@@ -107,7 +107,6 @@ a {
 .okBtn-b {
     padding-inline: 4%;
     padding-block: 1%;
-    height: 35px;
     color: #fff;
     background-color: #209cee;
     box-shadow:
@@ -121,7 +120,6 @@ a {
 .okBtn-g {
     padding-inline: 4%;
     padding-block: 1%;
-    height: 35px;
     color: #fff;
     background-color: #92cc41;
     box-shadow:
@@ -135,7 +133,6 @@ a {
 .okBtn-y {
     padding-inline: 4%;
     padding-block: 1%;
-    height: 35px;
     color: black;
     background-color: #f7d51d;
     box-shadow:
@@ -149,7 +146,6 @@ a {
 .okBtn-r {
     padding-inline: 4%;
     padding-block: 1%;
-    height: 35px;
     color: black;
     background-color: #e76e55;
     box-shadow:
