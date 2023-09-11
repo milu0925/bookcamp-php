@@ -9,8 +9,11 @@ $output = [
 
 $cid = $_POST['client_id'];
 $pid = $_POST['book_id'];
-$price = $_POST['book_price'];
 $count = $_POST['book_count'];
+
+$priceA = explode('元', $_POST['book_price']);
+$price = $priceA[0];
+
 
 // 檢查購物車存在嗎
 $checkSql = "SELECT * FROM `cart` WHERE book_id = :bidx AND client_id = :cidx";
@@ -27,7 +30,7 @@ if ($rowCount) {
 
     // 上面抓到的數量+這次更新的
     $updatedCount = $currentCount + $count;
-    
+
     $sql = "UPDATE `cart` SET `book_count`= :count  WHERE book_id = :id AND client_id = :cid";
     $stmt = $pdo->prepare($sql);
     $stmt->bindParam(":id", $pid);
@@ -40,11 +43,11 @@ if ($rowCount) {
     VALUES(:cid ,:pid ,:price ,:count )";
 
     $stmt = $pdo->prepare($sql);
-
     $stmt->bindParam(":cid", $cid);
     $stmt->bindParam(":pid", $pid);
     $stmt->bindParam(":price", $price);
     $stmt->bindParam(":count", $count);
+
     $stmt->execute();
 }
 

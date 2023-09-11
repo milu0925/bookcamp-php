@@ -5,7 +5,7 @@ $(function () {
 $('#list').on('click','button',function(){
     const row = ($(this).parents('div div .colProduct'));
     const img = row.children('img').attr("src");
-    const itemid = row.children('badge').text();
+    const itemid = row.children('.badge').text();
     const name = row.children('h5').text(); 
     const price = row.children('.d-flex').children('.fxl').text(); 
     //把資料帶入Modal中

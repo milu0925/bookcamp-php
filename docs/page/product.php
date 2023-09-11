@@ -13,7 +13,7 @@ require '../header.php';
         <div id="list" class="row">
         <?php foreach ($rows as $value): ?>
             <div class="col-xl-2 col-md-3 col-sm-4 col-6">
-                    <div class="position-relative colProduct">
+                    <div class="position-relative colProduct d-flex flex-column justify-content-between">
                         <div class="position-absolute top-0 start-0 badge rounded-pill text-bg-success">
                             <?php echo $value["book_id"]; ?>
                         </div>
@@ -80,7 +80,7 @@ require '../header.php';
                             <button type='button' class="subcount">
                             <img src='/phpProject/img/left-arrow.png' class='iconWidth' />
                             </button>
-                            <input type="text" id="itemCount" class="addinput font1 fl" name="book_count" value="1" disabled>
+                            <input type="text" id="itemCount" class="addinput font1 fl" name="book_count" value="1">
                             <button type='button' class="addcount">
                                 <img src='/phpProject/img/right-arrow.png' class='iconWidth' />
                             </button>

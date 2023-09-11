@@ -13,7 +13,10 @@ $pdoconn = [
     PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC //索引維結果集(原本是索引號)
 ];
 
-session_start();
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+
 //資料庫連線
 try {
     $pdo = new PDO("mysql:host={$servername};dbname={$dbname};charset=utf8", $username, $password, $pdoconn);

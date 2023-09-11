@@ -1,22 +1,18 @@
             <div class="container">
-                <div class="row">
-                    <!-- LOGO跟標題 -->
-                    <a href="#" class="d-flex p-3">
-                        <div>
-                            <img src="/img/LOGO.png" alt="" class="w-100">
-                        </div>
-                        <h1>書營</h1>
-                    </a>
-                    <!-- 這裡放導覽列 -->
-                    <div class="">
-                        <div class="d-flex hiddenme" >
-                            <a href="/phpProject/docs/page/order.php" class="m-2"><span><i
-                                        class="fa-solid fa-clipboard-list me-2"></i>訂單管理</span></a>
-                            <a href="/phpProject/docs/page/product.php" class="m-2"><span><i
-                                        class="fa-solid fa-book-tanakh me-2"></i>產品管理</span></a>
-                                        <a href="/phpProject/docs/page/cart.php" class="m-2"><span><i
-                                        class="fa-solid fa-book-tanakh me-2"></i>購物車</span></a>
-                        </div>
+                <!-- LOGO跟標題 -->
+                <a href="#" class="d-flex text-white font1">
+                        <img src="/phpProject/img/LOGO.png" alt="LOGO" class="logoBox">
+                    <h5 class="ps-2 fxl">BookCamp</h5>
+                </a>
+                <!-- 這裡放導覽列 -->
+                <div class="">
+                    <div class="d-flex text-white font3 line-absolute">
+                        <a href="/phpProject/docs/page/order.php" class="m-2"><span>
+                            <i class="fa-solid fa-clipboard-list me-2"></i>訂單管理</span></a>
+                        <a href="/phpProject/docs/page/product.php" class="m-2"><span>
+                            <i class="fa-solid fa-book-tanakh me-2"></i>產品管理</span></a>
+                        <a href="/phpProject/docs/page/cart.php" class="m-2"><span>
+                            <i class="fa-solid fa-cart-shopping me-2"></i>購物車</span></a>
                     </div>
                 </div>
             </div>
