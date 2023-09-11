@@ -2,10 +2,11 @@
 
 // 分頁
 $page = isset($_GET["page"]) ? $_GET["page"] : 1; //代表第幾頁
-$showpage = 10; //每頁顯示的數量
-$startpage = ($page - 1) * $showpage;
+$showpage = 10; //每頁顯示的訂單數
+$startpage = ($page - 1) * $showpage;  //開始頁
 $totalrec;
 $totalpage;
+$pageView = 5 ; //最多可見頁數
 
 //依照判斷去印出顯示的資料
 //假如有抓到日期選擇的form
