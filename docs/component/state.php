@@ -26,17 +26,15 @@ if (isset($_POST["batch_id"]) && isset($_POST["batch_status"])) {
 <div class="col-3">
 <div>Status</div>
 <form method="post" id="statusbatch">
-<div class="d-flex">
-<div>
-<select name="batch_status" id="default_select">
-<option disabled selected>選擇更改訂單狀態</option>
-<?php foreach ($roworderStatus as $status): ?>
-    <option value="<?php echo $status["order_status_id"]; ?>"><?php echo $status["order_status_name"] ?>
-    </option>
-<?php endforeach; ?>
-</select>
-</div>
-<button type="submit">OK</button>
+<div class="d-flex align-items-center">
+    <select name="batch_status" id="default_select" class="select-key mx-2">
+    <option disabled selected>請選擇更改狀態</option>
+    <?php foreach ($roworderStatus as $status): ?>
+        <option value="<?php echo $status["order_status_id"]; ?>"><?php echo $status["order_status_name"] ?>
+        </option>
+    <?php endforeach; ?>
+    </select>
+<button type="submit" class="btn btn-outline-light">OK</button>
 </div>
 </form>
 </div>

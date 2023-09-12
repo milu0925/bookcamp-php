@@ -120,6 +120,7 @@ a {
 .okBtn-g {
     padding-inline: 4%;
     padding-block: 1%;
+    width: 60px;
     color: #fff;
     background-color: #92cc41;
     box-shadow:

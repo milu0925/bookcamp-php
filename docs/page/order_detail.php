@@ -51,15 +51,17 @@ try {
 <div class="row">
 <!-- 左側訂單明細 -->
         <div class="col-8">
-        <a href="./order.php">返回</a>
-            <div class="p-4 d-flex flex-column">
-            <div> 共買了 <?php echo $ordercount ?> 個商品 </div>
-                        <div class="row">
+            <div class="d-flex font3 align-items-center w-25 mb-3">
+                <a href="/phpProject/docs/page/order.php" class="okBtn-r mx-3">返回</a>
+                <div class="bg-secondary text-white rounded-5 px-4 py-1">共買了 <?php echo $ordercount ?> 個商品 </div>
+            </div>
+            <div class="p-4 d-flex flex-column bg-white rounded-5">
+                        <div class="row mb-4">
                             <div class="col-5">商品</div>
                             <div class="col-4">圖片</div>
                             <div class="col-1">單價</div>
                             <div class="col-1">數量</div>
-                            <div class="col-1">小計</div>
+                            <div class="col-1 text-end">小計</div>
                         </div>
                         <div class="row">
                         <?php foreach ($roworderdetail as $value): ?>
@@ -68,7 +70,7 @@ try {
                                 </div>
                                 <div class="col-4">
                                     <div class="imgdiv">
-                                        <img src="../../img/<?php echo $value['book_img_id'] ?>" alt="book Image"
+                                        <img src="/phpProject/img/book/<?php echo $value['book_img_id'] ?>" alt="book Image"
                                             class="w-100">
                                     </div>
                                 </div>
@@ -122,7 +124,7 @@ try {
 
         <!-- 右側訂單資訊 -->
         <div class="col-4">
-            <div class="mt-5 bg-light p-5">
+            <div class="mt-5 me-3 bg-light p-3 rounded-5">
                 <div>訂單編號：
                     <span>
                         <?php echo $roworder[0]['order_id'] ?>
@@ -199,9 +201,6 @@ try {
                         echo $address;
                         ?>
                     </span>
-                </div>
-                <div>
-                    <hr>
                 </div>
             </div>
         </div>

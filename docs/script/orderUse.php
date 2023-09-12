@@ -22,9 +22,8 @@
             })
 
             $('#statusbatch').on('submit', function (event) {
-                var opval = $(this).find('select[name=batch_status]').val();
-                var checked = $('#orderDetail>tr>td').children('input[type=checkbox]:checked');
-
+                let opval = $(this).find('select[name=batch_status]').val();  //要改的狀態
+               let checked = $('#orderDetail .row').find('input[type=checkbox]:checked');
                 if (opval === null) {
                     event.preventDefault();
                     alert("請選擇");

@@ -25,8 +25,7 @@ try {
 }
 ?>
 
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"
-        style="font-family: 'CustomFont';">
+    <div class="modal fade font3" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" >
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -36,7 +35,7 @@ try {
                 <div class="modal-body">
                     <form method="post">
                         <?php if (isset($_SESSION['id'])): ?>
-                                        <a class="nav-link" href="./logout.php?logout=true">
+                                        <a class="nav-link" href="/phpProject/docs/login/logout.php?logout=true">
                                             <i class="fa-regular fa-heart me-2"></i>登出系統
                                         </a>
                         <?php else: ?>

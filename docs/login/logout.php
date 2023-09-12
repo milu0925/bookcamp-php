@@ -1,4 +1,8 @@
 <?php
+
+require "../connSQL.php";
+
+
 if (isset($_GET["logout"]) || ($_GET["logout"] == "true")) {
     unset($_SESSION["id"]);
     $previous_page = $_SERVER['HTTP_REFERER'];

@@ -16,6 +16,7 @@
         "></script>
         <link href="/phpProject/docs/css/product.css" rel="stylesheet">
         <link href="/phpProject/docs/css/cart.css" rel="stylesheet">
+        <link href="/phpProject/docs/css/component.css" rel="stylesheet">
         <style>
             body{
                 font-family: 'CustomFont';

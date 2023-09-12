@@ -1,0 +1,18 @@
+
+.input-money{
+
+    border-radius: 5px;
+    width: 20%;
+    height:30px;
+    text-align: center;
+}
+
+.input-date{
+    border-radius: 5px;
+    height: 30px;
+}
+
+.select-key{
+    border-radius: 5px;
+    height: 30px;
+}

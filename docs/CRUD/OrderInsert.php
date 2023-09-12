@@ -1,75 +1,65 @@
 <?php
 require '../connSQL.php';
 
+
+$totalAmount = 0; //總金額
+$book = []; //有購買的書編號
+$price = []; //有購買的書價格
+$count = []; //有購買的書數量
+
+
+
 //訂單資料寫入
 if (isset($_SESSION['id'])) {
 
+    $cart = $_POST['cartid'];
+
     // 抓到mySQL-total
-    $totalsql = "SELECT SUM(book_price*book_count) as total FROM `cart` WHERE client_id = ?";
+    $totalsql = "SELECT SUM(book_price*book_count) as total,book_id,book_price,book_count FROM `cart` WHERE cart_id = ?";
     $total = $pdo->prepare($totalsql);
     try {
-        $total->execute([$_SESSION['id']]);
-        $rowtotal = $total->fetch();
+
+        for ($i =0 ; $i < count($cart) ; $i++ ){
+            $total->execute([$cart[$i]]);
+            $row = $total->fetch(PDO::FETCH_ASSOC);
+            $totalAmount += $row['total'];
+            array_push($book, $row['book_id']);
+            array_push($price, $row['book_price']);
+            array_push($count, $row['book_count']);
+        };
 
     } catch (PDOException $e) {
         die("Error!: " . $e->getMessage() . "<br/>");
-    }
-    ;
+    };
+
 
     //訂單資料寫入
-    $ordersql = "INSERT INTO ``order``(`consignee`,`consignee_phone`,`consignee_address`,`client_id`,`delivery_id`,`receipt_id`,`pay_id`,`total`) VALUES(?,?,?,?,?,?,?,?)
-";
+    $ordersql = "INSERT INTO `order` (`consignee`,`consignee_phone`,`consignee_address`,`client_id`,`delivery_id`,`receipt_id`,`pay_id`,`order_status_id`,`total`) VALUES(?,?,?,?,?,?,?,?)";
     $order = $pdo->prepare($ordersql);
-    $order->execute([$_POST['consignee'], $_POST['consigneephone'], $_POST['consigneeaddress'], $_POST['clientid'], $_POST['delivery'], $_POST['receipt'], $_POST['pay'], $rowtotal['total'],]);
+    $order->execute([$_SESSION['name'], $_SESSION['phone'], $_SESSION['address'], $_SESSION['id'], 1, 1, 1,3,$totalAmount]);
 
-
-    // 明細資料寫入
-    $detailsql = "INSERT INTO ``order`_detail`(`order_id`,`book_id`,`book_price`,`book_count`,`client_id`) VALUES(?,?,?,?,?)";
+    // 訂單明細資料寫入
+    $detailsql = "INSERT INTO `order_detail` (`order_id`,`book_id`,`book_price`,`book_count`) VALUES(?,?,?,?)";
     $orderdetail = $pdo->prepare($detailsql);
 
     $orderIDs = $_POST['oid'];
-    $orderIDs1 = (int)$orderIDs[0] ;
-    $bookIDs = $_POST['pid'];
-    $bookPrices = $_POST['pprice'];
-    $bookCounts = $_POST['pcount'];
-    $clientID = $_SESSION['id'];
 
-    for ($i = 0; $i < count($orderIDs); $i++) {
-        $orderdetail->execute([$orderIDs[$i], $bookIDs[$i], $bookPrices[$i], $bookCounts[$i], $clientID]);
-    }
-    ;
+    for ($i = 0; $i < count($cart) ; $i++) {
+        $orderdetail->execute([$orderIDs, $book[$i], $price[$i], $count[$i]]);
+    };
 
-    // 運費計算
-    $deliveryfee = "UPDATE `order` SET delivery_fee = 0 WHERE total > 3000 ";
-    $fee = $pdo->prepare($deliveryfee);
-    try {
-        $fee->execute();
-    } catch (PDOException $e) {
-        die("Error!: " . $e->getMessage() . "<br/>");
-    }
-    ;
-    
-    // TOTAL運費計算
-    $totall = "UPDATE `order` SET total = total+60 WHERE total < 3000 AND order_id = ?";
-    $total = $pdo->prepare($totall);
-    try {
-        
-        $total->execute([$orderIDs1]);
-    } catch (PDOException $e) {
-        die("Error!: " . $e->getMessage() . "<br/>");
-    }
-    ;
 
-    // 刪除購物車已結帳內容
-    $deletesql = "DELETE FROM `cart` WHERE book_id=?";
+    //  刪除購物車已結帳內容
+    $deletesql = "DELETE FROM `cart` WHERE cart_id=?";
     $delete = $pdo->prepare($deletesql);
     try {
-        for ($i = 0; $i < count($orderIDs); $i++) {
-            $delete->execute([$bookIDs[$i]]);
+        for ($i = 0; $i < count($cart); $i++) {
+            $delete->execute([$cart[$i]]);
         }
     } catch (PDOException $e) {
         die("Error!: " . $e->getMessage() . "<br/>");
     }
+
 }
-header("location:./book/book.php");
+header("location: /phpProject/docs/page/product.php");
 ?>

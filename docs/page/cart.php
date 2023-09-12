@@ -15,6 +15,22 @@ try {
     die("Error!: " . $e->getMessage() . "<br/>");
 }
 ;
+
+
+// 抓到最後一張訂單
+$ordersql = "SELECT * FROM `order`";
+$order = $pdo->prepare($ordersql);
+
+try {
+    $order->execute();
+    $orderID = $order->rowCount();
+
+} catch (PDOException $e) {
+    die("Error!: " . $e->getMessage() . "<br/>");
+}
+;
+
+
 ?>
 
 <?php require '../header.php'; ?>
@@ -36,37 +52,36 @@ try {
                 <div class="col-1">操作</div>
                 </div>
             
-                <form method="POST" action="./checkout.php" class="d-flex flex-column justify-content-end">
+                <form method="POST" action="/phpProject/docs/CRUD/OrderInsert.php" id="checkCart" class="d-flex flex-column justify-content-end">
                 <div id="orderDetail">
                     <?php foreach ($rows as $key => $value): ?>
-                        <div class="row colCart font3 fm">
-                            <div class="col-1">
-                                <input type="hidden" class="oid" value="<?php echo $rowdetail + 1 ?>">
-                                <input type="hidden" class="pid" value="<?php echo $value['book_id'] ?>">
-                                <input type="checkbox"  name="cartid[]" value="<?php echo $value['book_id'] ?>">
-                            </div>
-                            <div class="col-5">
-                                <?php echo $value['b_title'] ?>
-                            </div>
-                            <div class="col-1 pricebox">
-                                <input class="pprice" type="hidden" value="<?php echo $value['book_price'] ?>" >
-                                <?php echo $value['book_price'] ?>
-                            </div>
-                            <div class="col-3 countbox">
-                                <div class="input-group changecount d-flex justify-content-center">
-                                    <input type="text" class="pcount cartinput font1 fl"
-                                        value="<?php echo $value['book_count'] ?>">
-                                    <div class="d-flex flex-column cartbtn">
-                                        <button type="button"><i class="fa-solid fa-caret-up fa-2xs"></i></button>
-                                        <button type="button"><i class="fa-solid fa-caret-down fa-2xs"></i></button>
-                                    </div>
+                    <div class="row colCart font3 fm">
+                        <div class="col-1">
+                            <input type="hidden" name="oid"  value="<?php echo $orderID + 1 ?>">
+                            <input type="hidden" name="pid" class="pid"  value="<?php echo $value['book_id'] ?>">
+                            <input type="checkbox"  name="cartid[]" value="<?php echo $value['cart_id'] ?>">
+                        </div>
+                        <div class="col-5">
+                            <?php echo $value['b_title'] ?>
+                        </div>
+                        <div class="col-1 pricebox">
+                            <input name="pprice" type="hidden" value="<?php echo $value['book_price'] ?>" >
+                            <?php echo $value['book_price'] ?>
+                        </div>
+                        <div class="col-3 countbox">
+                            <div class="input-group changecount d-flex justify-content-center">
+                                <input type="text" name="pcount" class="pcount cartinput font1 fl" value="<?php echo $value['book_count'] ?>">
+                                <div class="d-flex flex-column cartbtn">
+                                    <button type="button"><i class="fa-solid fa-caret-up fa-2xs"></i></button>
+                                    <button type="button"><i class="fa-solid fa-caret-down fa-2xs"></i></button>
                                 </div>
                             </div>
-                            <div class="col-1 amountbox">
-                            </div>
-                            <div class="col-1"><a class="delete"><i class="fa-solid fa-trash-can"></i></a>
-                            </div>
                         </div>
+                        <div class="col-1 amountbox">
+                        </div>
+                        <div class="col-1"><a class="delete"><i class="fa-solid fa-trash-can"></i></a>
+                        </div>
+                    </div>
                     <?php endforeach; ?>
                     <div class="row colCheckBlock font3 fl">
                         <div class="col-9"></div>

@@ -7,7 +7,7 @@
                     productcount++;
                     $(this).parents('.changecount').find('input').val(productcount);
                     amount();
-                    updateCartItem($(this).parents('.newcount'));
+                    updateCartItem($(this).parents('.colCart'));
                 });
                 // 產品數量的--
                 $('#orderDetail').on('click', 'button:nth-child(2)', function () {
@@ -16,13 +16,13 @@
                         productcount--;
                         $(this).parents('.changecount').find('input').val(productcount);
                         amount();
-                        updateCartItem($(this).parents('.newcount'));
+                        updateCartItem($(this).parents('.colCart'));
                     }
                 });
                 //傳到Cart更新資料庫
                 function updateCartItem(row) {
-                    var productId = row.children('td:nth-child(1)').find('input:nth-child(2)').val();
-                    var count = parseInt(row.children('td:nth-child(4)').find('input').val());
+                    var productId = row.find('.pid').val();
+                    var count = row.find('.pcount').val();
                     $.ajax({
                         url: '/phpProject/docs/CRUD/CartUpdate.php',
                         method: 'POST',
@@ -50,7 +50,7 @@
                     let total = 0
                     $('#orderDetail .row').each(function () {
                         // 先抓到產品價格和數量(並轉成INT)
-                        let price = parseInt($(this).find('.pricebox .pprice').val());
+                        let price = parseInt($(this).find('.pricebox input').val());
                         let count = parseInt($(this).find('.countbox input').val());
                         let thisAmount = price*count;
                         // 把計算值打印在小計欄位
@@ -90,7 +90,7 @@
                             cancelButtonText: '取消'
                         }).then(function (result) {
                             if (result.isConfirmed) {
-                                document.querySelector('form').submit();
+                               $('#checkCart').submit();
                             } else {
                                 event.preventDefault();
                             }
