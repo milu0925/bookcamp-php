@@ -1,7 +1,7 @@
 <?php
-$servername = "203.64.101.140";
+$servername = "";
 $username = "root";
-$password = '$2a$08$OjPb6RxHpfCSCCD/55ijyOa0BHVJYZ.4PQj6bhenLuLgmMIVkFUUW';
+$password = '';
 $dbname = "bookcamp";
 
 // PDO 連線設定
